@@ -9,14 +9,13 @@
 // How to work this thing ( mainly using object, function factories, IIFE)
 
 //create a square factory function
-function createSquare()
+function createSquare() 
 {
     let state = '';
-    return
-    {
+    return {
         getState: () => state,
-        setState: (newState) => {state = newState;},
-        reset: () => {state = '';}
+        setState: (newState) => { state = newState; },
+        reset: () => { state = ''; }
     };
 }
 
@@ -43,6 +42,7 @@ function gameBoard()
             element.textContent = currentPlayer; // Write the result to the square
 
             checkWin(); // Future function to use
+
         }
     }
 
@@ -64,33 +64,36 @@ function gameBoard()
             squares[a].getState() == squares[b].getState() &&
             squares[a].getState() == squares[c].getState())
             {
-                console.log("Player ${squares[a].getState()} Wins!");
+                console.log('Player ${squares[a].getState()} Wins!');
                 return;
+                
             }
 
             if (turn === 9) // make draw statement
             {
                 console.log("It's a draw");
             }
-        }
-
-        
+        }  
     }
-    
+    return {handleclick};
+        
 }
 
-//create a DOM to connect JS to HTML
 document.addEventListener('DOMContentLoaded',function() // make sure when the DOMloaded, the game function is running
-{
-    const board = gameBoard(); // make variable to be an ambassador of game board in this DOM manipulation
-    const squareElements = Array.from(document.getElementsByClassName("squarespace")) // call the HTML divs to the JS to use
-    squareElements.forEach((squareElement, index) => {
-        squareElement.addEventListener("click", function() {
-            board.handleclick(index, squareElement);  // Call the handleClick function properly
-        });
-    });
+        {
+            const board = gameBoard(); // make variable to be an ambassador of game board in this DOM manipulation
+            const squareElements = Array.from(document.getElementsByClassName("squarespace")) // call the HTML divs to the JS to use
+            squareElements.forEach((squareElement, index) => 
+            {
+                squareElement.addEventListener("click", function() 
+                {
+                    board.handleclick(index, squareElement);  // Call the handleClick function properly
+                });
+            });
+    
+    
+        })
 
-})
 
 
 
