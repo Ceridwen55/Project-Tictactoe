@@ -8,12 +8,32 @@
 
 // How to work this thing ( mainly using object, function factories, IIFE)
 
-// 1. Create the asset related to the game ( board, players ) with using HTML and connect the brain of it using JS
-// A. Creating a board function
-    // a. Make a main function of board using object (consisted of 9 square)
+//create a square factory function
+function createSquare()
+{
+    let state = '';
+    return
+    {
+        getState: () => state,
+        setState: (newState) => {state = newState;},
+        reset: () => {state = '';}
+    };
+}
 
-// 2. Create the game's logic
 
-// 3. Create the game's rules
+//create gameboard function
+function gameBoard()
+{
+    let squares = []; // creating an array to store square created by the createSquare funct
+    let turn = 0; // counting player turn next time
+    for(i = 0; i < 9 ;i++)
+        {
+            squares.push(createSquare()); // pushing the square created in the createSquare funct in tho the squares array each by iterating it through loop
+        }
+}
 
-// 4. Design the game
+//create handleclick factory function
+function handleclick()
+{
+    
+}
